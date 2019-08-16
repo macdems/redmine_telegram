@@ -1,0 +1,16 @@
+<p>
+  <label for="settings_telegram_bot_token"><%= l :label_telegram_bot_token %></label>
+  <%= text_field_tag 'settings[bot_token]', @settings['bot_token'], size: 50 %>
+</p>
+<p>
+  <label for="settings_http_proxy_addr"><%= l :label_telegram_http_proxy_addr %></label>
+  <%= text_field_tag 'settings[http_proxy_addr]', @settings['http_proxy_addr'], size: 50 %>
+</p>
+<p>
+  <label for="settings_http_proxy_port"><%= l :label_telegram_http_proxy_port %></label>
+  <%= text_field_tag 'settings[http_proxy_port]', @settings['http_proxy_port'], size: 7 %>
+</p>
+<p>
+  <label for="settings_strip_signature"><%= l :label_telegram_strip_signature%></label>
+  <%= check_box_tag 'settings[strip_signature]', '1', RedmineTelegram.strip_signature? %>
+</p>

@@ -1,0 +1,21 @@
+</fieldset>
+<fieldset class="box tabular">
+  <legend><%=l :label_telegram_preferences %></legend>
+  <% if RedmineTelegram::configured? %>
+    <%= fields_for :pref, @user.pref do |pref_fields| %>
+      <p>
+        <label for="pref_telegram_enabled"><%= l :label_telegram_enabled %></label>
+        <%= pref_fields.check_box :telegram_enabled %>
+      </p>
+      <p>
+        <label for="pref_telegram_chat_id"><%= l :label_telegram_chat_id %></label>
+        <%= pref_fields.text_field :telegram_chat_id %>
+      </p>
+      <p>
+        <label for="pref_telegram_skip_emails"><%= l :label_telegram_skip_emails %></label>
+        <%= pref_fields.check_box :telegram_skip_emails %>
+      </p>
+    <% end %>
+  <% else %>
+    <p><%= l :info_configure_telegram %></p>
+  <% end %>

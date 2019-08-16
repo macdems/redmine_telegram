@@ -1,0 +1,10 @@
+pl:
+  label_telegram_preferences: Powiadomienia na Telegramie
+  label_telegram_bot_token: Telegram bot token
+  label_telegram_enabled: Wysyłaj powiadomienia na Telegram
+  label_telegram_chat_id: Identyfikator rozmowy
+  label_telegram_skip_emails: Pomiń emaile
+  label_telegram_strip_signature: Usuń podpis z powiadomień
+  label_telegram_http_proxy_addr: Adres serwera proxy HTTP
+  label_telegram_http_proxy_port: Port serwera proxy HTTP
+  info_configure_telegram: Telegram nie jest jeszcze skonfigurowany.
