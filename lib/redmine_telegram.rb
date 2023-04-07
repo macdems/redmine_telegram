@@ -1,13 +1,14 @@
 require 'uri'
 
-require_dependency 'redmine_telegram/patches/mailer_patch'
-require_dependency 'redmine_telegram/patches/user_patch'
-require_dependency 'redmine_telegram/patches/user_preference_patch'
+require File.dirname(__FILE__) + '/redmine_telegram/patches/mailer_patch'
+require File.dirname(__FILE__) + '/redmine_telegram/patches/user_patch'
+require File.dirname(__FILE__) + '/redmine_telegram/patches/user_preference_patch'
 
 module RedmineTelegram
   class << self
 
     def setup
+      ::Rails.logger.debug 'Redmine Telegram Setup'
       Patches::MailerPatch.apply
       Patches::UserPatch.apply
       UserPreference.send :prepend, Patches::UserPreferencePatch
