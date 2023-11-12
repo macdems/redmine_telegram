@@ -3,8 +3,12 @@ en:
   label_telegram_bot_token: Telegram bot token
   label_telegram_enabled: Send Telegram notifications
   label_telegram_chat_id: Telegram chat ID
+  label_telegram_chat: Telegram chat
+  link_telegram_chat_individual: Setup individual conversation
+  link_telegram_chat_group: Add to group
   label_telegram_skip_emails: Skip emails
   label_telegram_strip_signature: Strip email signature from telegram notifications
   label_telegram_http_proxy_addr: HTTP Proxy Address
   label_telegram_http_proxy_port: HTTP Proxy Port
   info_configure_telegram: Telegram bot is not configured yet. Please ask an administrator to do so under Administration / Plugins.
+  telegram_user_attached: Welcome to Redmine! Notifications for user %{user} will be sent here.

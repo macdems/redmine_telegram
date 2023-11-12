@@ -3,6 +3,7 @@ require 'uri'
 require File.dirname(__FILE__) + '/redmine_telegram/patches/mailer_patch'
 require File.dirname(__FILE__) + '/redmine_telegram/patches/user_patch'
 require File.dirname(__FILE__) + '/redmine_telegram/patches/user_preference_patch'
+require File.dirname(__FILE__) + '/redmine_telegram/patches/token_patch'
 
 module RedmineTelegram
   class << self
@@ -12,6 +13,7 @@ module RedmineTelegram
       Patches::MailerPatch.apply
       Patches::UserPatch.apply
       UserPreference.send :prepend, Patches::UserPreferencePatch
+      TelegramApi.set_webhook
     end
 
     def bot_token
@@ -24,6 +26,23 @@ module RedmineTelegram
 
     def strip_signature?
       Setting.plugin_redmine_telegram['strip_signature'].to_s == '1'
+    end
+
+    def webhook_url
+      "#{Setting.protocol}://#{Setting.host_name}/telegram/#{bot_token}"
+    end
+
+    def chat_name user
+      chat_id = user.pref.telegram_chat_id
+      if chat_id
+        chat = TelegramApi.get_chat_info chat_id
+        if chat['type'] == 'private'
+          return "#{chat['first_name']} #{chat['last_name']}"
+        else
+          return chat['title']
+        end
+      end
+      chat_id
     end
 
     def proxy_options

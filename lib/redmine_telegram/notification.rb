@@ -1,32 +1,6 @@
-require 'httparty'
-
 module RedmineTelegram
 
-  class TelegramApi
-    include HTTParty
-
-    base_uri "https://api.telegram.org/bot#{RedmineTelegram::bot_token}"
-
-    def self.send_message(message)
-      options = RedmineTelegram.proxy_options
-      options[:query] = message
-
-      r = post '/sendMessage', options
-      if r['ok']
-        if Rails.logger.debug?
-          Rails.logger.debug "Telegram message sent:\n#{message}\n\n#{r}"
-        end
-        true
-      else
-        Rails.logger.warn "Telegram request failed:\n#{message}\n\n#{r}"
-        false
-      end
-    end
-
-  end
-  
   class Notification
-
     def initialize(mail)
       @chats = []
       @message = get_message(mail)
@@ -45,19 +19,14 @@ module RedmineTelegram
     end
 
     def deliver!
-      message = {
-        text: @message,
-      }
       #t = Thread.new do
         @chats.each do |chat|
-          message[:chat_id] = chat
-          TelegramApi.send_message message
+          TelegramApi.send_message(chat_id: chat, text: @message)
         end
       #end
       t.join if Rails.env.test?
       @chats.count
     end
-
   end
 
 end

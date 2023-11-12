@@ -8,8 +8,12 @@
         <%= pref_fields.check_box :telegram_enabled %>
       </p>
       <p>
-        <label for="pref_telegram_chat_id"><%= l :label_telegram_chat_id %></label>
-        <%= pref_fields.text_field :telegram_chat_id %>
+        <label for="pref_telegram_chat"><%= l :label_telegram_chat %></label>
+        <span>
+          <%= RedmineTelegram::chat_name @user %><br/>
+          <a href="/telegram/attach/user"><%= l :link_telegram_chat_individual %></a><br/>
+          <a href="/telegram/attach/group"><%= l :link_telegram_chat_group %></a><br/>
+        </span>
       </p>
       <p>
         <label for="pref_telegram_skip_emails"><%= l :label_telegram_skip_emails %></label>

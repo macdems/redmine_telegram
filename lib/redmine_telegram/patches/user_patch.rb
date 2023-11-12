@@ -15,7 +15,7 @@ module RedmineTelegram
         end
 
         def wants_telegram?
-          pref.telegram_enabled and telegram_chat_id.present? and not telegram_chat_id.empty?
+          pref.telegram_enabled and telegram_chat_id.present?
         end
 
         def wants_only_telegram?
@@ -27,4 +27,3 @@ module RedmineTelegram
     end
   end
 end
-
